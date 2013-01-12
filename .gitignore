@@ -1,0 +1,13 @@
+nohup.out
+target/*
+src/main/resources/twitter4j.properties
+.DS_Store
+~$*
+.classpath
+.project
+.settings
+reports/*
+*.iml
+*.ipr
+*.iws
+.idea/*
