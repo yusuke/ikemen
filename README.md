@@ -7,7 +7,7 @@ with Gradle:
 
 ##ready
 Generate your Twitter-app credential file after build at least once,  
-into **./build/classes/main** folder.
+set it in **./build/classes/main** folder.
 
 
 see [http://twitter4j.org/en/configuration.html](http://twitter4j.org/en/configuration.html) for more detail & latest info.
