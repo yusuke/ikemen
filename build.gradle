@@ -18,3 +18,27 @@ dependencies {
 		[group: "junit", name: "junit",version: "3.8.2"]
 	)
 }
+
+jar {
+	manifest {
+		attributes 'Main-class': "ikemen.Main"
+	}
+	
+	from {
+		configurations.runtime.collect {
+			if (it.isDirectory()){
+			} else {
+				it
+				zipTree(it)
+			}
+		}
+	}
+	
+	from {
+		fileTree(dir: 'resources', includes: ['*.*'])
+	}
+}
+
+task runJar (dependsOn:"jar") << {
+	ant.java(jar:"${libsDir}${File.separator}ikemen.jar",fork:true)
+}
