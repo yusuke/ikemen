@@ -21,8 +21,8 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 @RunWith(Enclosed.class)
 public class MainTest {
