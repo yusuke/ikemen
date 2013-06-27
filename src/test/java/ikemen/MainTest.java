@@ -15,23 +15,55 @@
  */
 package ikemen;
 
-public class MainTest extends junit.framework.TestCase {
-    public void testMain() throws Exception {
-        assertTrue(Main.yonda("イケメン"));
-        assertTrue(Main.yonda("イケメソ"));
-        assertTrue(Main.yonda("イクメン"));
-        assertTrue(Main.yonda("イクメソ"));
-        assertTrue(Main.yonda("ｲｹﾒﾝ"));
-        assertTrue(Main.yonda("ｲｹﾒｿ"));
-        assertTrue(Main.yonda("ｲｸﾒﾝ"));
-        assertTrue(Main.yonda("ｲｸﾒｿ"));
-        assertTrue(Main.yonda("ィけメｿ"));
-        assertTrue(Main.yonda("ィヶめｿ"));
-        assertTrue(Main.yonda("ヒヶめｿ"));
-        assertTrue(Main.yonda("ヒゲめｿ"));
-        assertTrue(Main.yonda("ヒゲメン"));
-        assertTrue(Main.yonda("い・く・め・ん"));
-        assertFalse(Main.yonda("あくめん"));
-        assertFalse(Main.yonda("生めん"));
+import org.junit.experimental.runners.Enclosed;
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.Theories;
+import org.junit.experimental.theories.Theory;
+import org.junit.runner.RunWith;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
+@RunWith(Enclosed.class)
+public class MainTest {
+
+    @RunWith(Theories.class)
+    public static class WhenValidParam{
+        @DataPoints
+        public static String[] PARAMS = {
+                "イケメン",
+                "イケメソ",
+                "イクメン",
+                "イクメソ",
+                "ｲｹﾒﾝ",
+                "ｲｹﾒｿ",
+                "ｲｸﾒﾝ",
+                "ｲｸﾒｿ",
+                "ィけメｿ",
+                "ィヶめｿ",
+                "ヒヶめｿ",
+                "ヒゲめｿ",
+                "ヒゲメン",
+                "い・く・め・ん",
+        };
+
+        @Theory
+        public void shouldReturnTrue(String param){
+            assertThat(Main.yonda(param), is(true));
+        }
+    }
+
+    @RunWith(Theories.class)
+    public static class WhenInvalidParam{
+        @DataPoints
+        public static String[] PARAMS = {
+                "あくめん",
+                "生めん",
+        };
+
+        @Theory
+        public void shouldReturnFalse(String param){
+            assertThat(Main.yonda(param), is(false));
+        }
     }
 }
